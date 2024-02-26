@@ -8,14 +8,17 @@ class ProductDetailsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Row(
-                      children: [ SizedBox(
-                        width: 100,
-                        child: Text("$label  : ",style: GoogleFonts.roboto(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold
-                        ),),
-                      ), Expanded(child: Text(value!,style: GoogleFonts.merriweather(fontSize: 17,fontWeight: FontWeight.w400),))],
-                    );
+    return  Padding(
+      padding: const EdgeInsets.only(top:8.0),
+      child: Row(
+                        children: [ SizedBox(
+                          width: 100,
+                          child: Text("$label  : ",style: GoogleFonts.roboto(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold
+                          ),),
+                        ), Expanded(child: Text(value!,style: GoogleFonts.merriweather(fontSize: 17,fontWeight: FontWeight.w400),))],
+                      ),
+    );
   }
 }

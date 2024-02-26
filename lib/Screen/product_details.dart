@@ -5,9 +5,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class ProductDetailsScreen extends StatefulWidget {
-  const ProductDetailsScreen({super.key, this.id});
+  final int id;
 
-  final int? id;
+  const ProductDetailsScreen({super.key, required this.id});
 
   @override
   State<ProductDetailsScreen> createState() => _ProductDetailsScreenState();
@@ -16,7 +16,9 @@ class ProductDetailsScreen extends StatefulWidget {
 class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
   @override
   void initState() {
-    context.read<ProductDetailsBloc>().add(ProductDetailsLoadedEvent());
+    context
+        .read<ProductDetailsBloc>()
+        .add(ProductDetailsLoadedEvent(widget.id));
     super.initState();
   }
 
@@ -59,11 +61,33 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                               value: state.productDetails.price.toString()),
                           ProductDetailsWidget(
                               label: "Description",
-                              value: state.productDetails.description.toString()),
+                              value:
+                                  state.productDetails.description.toString()),
                           ProductDetailsWidget(
-                              label: "Category", value: state.productDetails.category.toString()),
-                          ProductDetailsWidget(
-                              label: "Image", value: state.productDetails.image.toString()),
+                              label: "Category",
+                              value: state.productDetails.category.toString()),
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Container(
+                              width: 200,
+                              height: 200,
+                              decoration: BoxDecoration(
+                                  border:
+                                      Border.all(width: 1, color: Colors.black),
+                                  borderRadius: BorderRadius.circular(15),
+                                  image: DecorationImage(
+                                      image: NetworkImage(
+                                          state.productDetails.image),
+                                      fit: BoxFit.cover)),
+                            ),
+                          )
+
+                          // ProductDetailsWidget(
+                          //     label: "Image",
+                          //     value: state.productDetails.image.toString()),
                         ],
                       ),
                     ),

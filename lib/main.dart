@@ -1,19 +1,25 @@
 import 'package:bloc_demo/Repository/product_repo.dart';
-import 'package:bloc_demo/Screen/product_homepage.dart';
 import 'package:bloc_demo/bloc/bloc/product_details_bloc.dart';
 import 'package:bloc_demo/bloc/product_list_bloc/product_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'Repository/user_repository.dart';
+import 'Screen/splash_screen/splash_screen.dart';
+import 'bloc/bloc/splash_bloc/splash_bloc.dart';
 void main() {
+  final SplashBloc splashBloc = SplashBloc(userApi: UserApi());
+
   runApp(RepositoryProvider(
     create: (context) => ProductRepo(),
-    child: const MyApp(),
+    child: MyApp(splashBloc: splashBloc),
   ));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final SplashBloc splashBloc;
+
+  const MyApp({Key? key, required this.splashBloc}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -21,6 +27,9 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider(
           create: (context) => ProductBloc(ProductRepo()),
+        ),
+        BlocProvider(
+          create: (context) => ProductDetailsBloc(ProductRepo()),
         ),
         BlocProvider(
           create: (context) => ProductDetailsBloc(ProductRepo()),
@@ -33,7 +42,7 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        home: const BlocHomePage(),
+        home: SplashScreen(splashBloc: splashBloc,userId: 10),
       ),
     );
   }
