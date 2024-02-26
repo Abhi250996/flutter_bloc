@@ -1,7 +1,6 @@
 import 'package:bloc_demo/Screen/product_category.dart';
 import 'package:bloc_demo/app_constants.dart';
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/material.dart';
+ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class DrawerWidget extends StatefulWidget {
@@ -30,22 +29,22 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                         margin: const EdgeInsets.all(10),
                         width: 100,
                         height: 100,
-                        child: Center(
-                          child: CachedNetworkImage(
-                            imageUrl:
-                                "https://images.rawpixel.com/image_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIzLTA4L3Jhd3BpeGVsX29mZmljZV8yNl8zZF9pbGx1c3RyYXRpb25fb2ZfYV9ib3lfc2l0dGluZ19vbl90aGVfZmxvb18zMjc1NTFkMC1mMzRiLTQ3NzItYjg4YS1hOGM5Yzg2ODFiMzFfMS5qcGc.jpg",
-                            fit: BoxFit.cover,
-                            imageBuilder: (context, imageProvider) => Container(
-                              decoration: BoxDecoration(
-                                border:
-                                    Border.all(width: 2, color: Colors.white),
-                                borderRadius: BorderRadius.circular(50),
-                                image: DecorationImage(
-                                    image: imageProvider, fit: BoxFit.cover),
-                              ),
-                            ),
-                          ),
-                        ),
+                        // child: Center(
+                        //   child: CachedNetworkImage(
+                        //     imageUrl:
+                        //         "https://images.rawpixel.com/image_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIzLTA4L3Jhd3BpeGVsX29mZmljZV8yNl8zZF9pbGx1c3RyYXRpb25fb2ZfYV9ib3lfc2l0dGluZ19vbl90aGVfZmxvb18zMjc1NTFkMC1mMzRiLTQ3NzItYjg4YS1hOGM5Yzg2ODFiMzFfMS5qcGc.jpg",
+                        //     fit: BoxFit.cover,
+                        //     imageBuilder: (context, imageProvider) => Container(
+                        //       decoration: BoxDecoration(
+                        //         border:
+                        //             Border.all(width: 2, color: Colors.white),
+                        //         borderRadius: BorderRadius.circular(50),
+                        //         image: DecorationImage(
+                        //             image: imageProvider, fit: BoxFit.cover),
+                        //       ),
+                        //     ),
+                        //   ),
+                        // ),
                       ),
                     ],
                   ),
