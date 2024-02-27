@@ -1,23 +1,52 @@
-class User {
-  final int id;
-  final String email;
-  final String firstName;
-  final String lastName;
-  final String avatarUrl;
 
-  const User({
+class User {
+  int id;
+  String email;
+  String firstName;
+  String lastName;
+  String avatar;
+
+  User({
     required this.id,
     required this.email,
     required this.firstName,
     required this.lastName,
-    required this.avatarUrl,
+    required this.avatar,
   });
 
   factory User.fromJson(Map<String, dynamic> json) => User(
-    id: json['data']['id'],
-    email: json['data']['email'],
-    firstName: json['data']['first_name'],
-    lastName: json['data']['last_name'],
-    avatarUrl: json['data']['avatar'],
+    id: json["id"],
+    email: json["email"],
+    firstName: json["first_name"],
+    lastName: json["last_name"],
+    avatar: json["avatar"],
   );
+
+  Map<String, dynamic> toJson() => {
+    "id": id,
+    "email": email,
+    "first_name": firstName,
+    "last_name": lastName,
+    "avatar": avatar,
+  };
+}
+
+class Support {
+  String url;
+  String text;
+
+  Support({
+    required this.url,
+    required this.text,
+  });
+
+  factory Support.fromJson(Map<String, dynamic> json) => Support(
+    url: json["url"],
+    text: json["text"],
+  );
+
+  Map<String, dynamic> toJson() => {
+    "url": url,
+    "text": text,
+  };
 }

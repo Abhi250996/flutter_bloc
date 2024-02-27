@@ -1,11 +1,11 @@
 import 'package:bloc_demo/Screen/dashboard/dashboard.dart';
-import 'package:bloc_demo/bloc/bloc/user_bloc/login_event.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../bloc/bloc/user_bloc/login_bloc.dart';
-import '../../bloc/bloc/user_bloc/login_state.dart';
-import '../product_homepage.dart';
+import '../../Manager/preference_manager/manager_preference.dart';
+import '../../bloc/bloc/login_bloc/login_bloc.dart';
+import '../../bloc/bloc/login_bloc/login_event.dart';
+import '../../bloc/bloc/login_bloc/login_state.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -17,6 +17,7 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
+  final _preferenceManager = PreferenceManager.instance;
 
   @override
   Widget build(BuildContext context) {
@@ -37,13 +38,13 @@ class _LoginPageState extends State<LoginPage> {
                 },
               );
             } else if (state is LoginSuccessState) {
-              // Navigate to next screen or display success message
+              _preferenceManager.setUserOnDevice(state.user);
+              _preferenceManager.setLogin(true);
+
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => DashboardScreen(
-                          user: state.user,
-                        )),
+                    builder: (context) => const DashboardScreen()),
               );
             } else if (state is LoginErrorState) {
               // Show error message

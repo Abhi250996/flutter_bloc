@@ -31,8 +31,12 @@ class UserApi {
     final url = Uri.parse('$baseUrl/$userId');
     final response = await get(url);
 
+
+
     if (response.statusCode == 200) {
       final data = jsonDecode(response.body);
+
+      print(data);
       return User.fromJson(data);
     } else {
       throw Exception('Failed to fetch user: ${response.statusCode}');

@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 
+import '../../../Manager/preference_manager/manager_preference.dart';
 import '../../../Repository/user_repository.dart';
 import 'login_event.dart';
 import 'login_state.dart';
@@ -20,20 +21,19 @@ import 'login_state.dart';
 //   }
 // }
 
-
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
-  LoginBloc() : super(InitialLoginState());
+  final _preferenceManager = PreferenceManager.instance;
 
-  @override
-  Stream<LoginState> mapEventToState(LoginEvent event) async* {
-    if (event is LoginButtonPressed) {
+  LoginBloc() : super(InitialLoginState()) {
+    on<LoginButtonPressed>((event, emit) async{
       emit(LoginLoadingState());
       try {
-        final user = await UserApi.getUser(event.email, event.password); // Use email and password from the event
+        final user = await UserApi.getUser(event.email, event.password);
         emit(LoginSuccessState(user));
+
       } catch (error) {
         emit(LoginErrorState(error.toString()));
       }
-    }
+    });
   }
 }

@@ -1,37 +1,35 @@
-import 'package:bloc_demo/Model/user.dart';
-import 'package:bloc_demo/Screen/dashboard/screen2.dart';
 import 'package:flutter/material.dart';
 
 import '../../Manager/preference_manager/manager_preference.dart';
+import '../../Model/user.dart';
 
-class DashboardScreen extends StatefulWidget {
-  const DashboardScreen({super.key});
+class Screen2 extends StatefulWidget {
+  const Screen2({super.key});
 
   @override
-  State<DashboardScreen> createState() => _DashboardScreenState();
+  State<Screen2> createState() => _Screen2State();
 }
 
-class _DashboardScreenState extends State<DashboardScreen> {
+class _Screen2State extends State<Screen2> {
   final _preferenceManager = PreferenceManager.instance;
-  late User? user;
+  late  User? user;
 
   @override
   void initState() {
     getUserData();
     super.initState();
   }
+  getUserData() async{
+    user=await _preferenceManager.getUserData();
 
-  getUserData() async {
-    user = await _preferenceManager.getUserData();
   }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Dashboard'),
+        title: const Text('Screen 2'),
       ),
-      body: Center(
+      body:   Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -42,13 +40,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
             const SizedBox(height: 20),
             Text('Name: ${user!.firstName} ${user!.lastName}'),
             Text('Email: ${user!.email}'),
-            MaterialButton(
-              onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => const Screen2()));
-              },
-              child: const Text("Press Me"),
-            )
           ],
         ),
       ),
