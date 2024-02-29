@@ -34,7 +34,7 @@ class _Screen2State extends State<Screen2> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             CircleAvatar(
-              backgroundImage: NetworkImage(user!.avatar),
+              backgroundImage: NetworkImage(user!.avatar!),
               radius: 50,
             ),
             const SizedBox(height: 20),

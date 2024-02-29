@@ -1,4 +1,5 @@
 import 'package:bloc_demo/Repository/product_repo.dart';
+import 'package:bloc_demo/bloc/bloc/dashboard/dashboard_bloc.dart';
 import 'package:bloc_demo/bloc/bloc/login_bloc/login_bloc.dart';
 import 'package:bloc_demo/bloc/bloc/product_details_bloc.dart';
 import 'package:bloc_demo/bloc/product_list_bloc/product_bloc.dart';
@@ -33,7 +34,10 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => ProductBloc(ProductRepo()),
+
+
         ),
+        BlocProvider(create: (context)=> DashboardBloc()),
         BlocProvider(
           create: (context) => ProductDetailsBloc(ProductRepo()),
         ),

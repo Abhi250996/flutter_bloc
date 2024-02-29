@@ -1,10 +1,10 @@
 
 class User {
-  int id;
-  String email;
-  String firstName;
-  String lastName;
-  String avatar;
+  int? id;
+  String? email;
+  String? firstName;
+  String? lastName;
+  String? avatar;
 
   User({
     required this.id,
@@ -19,7 +19,7 @@ class User {
     email: json["email"],
     firstName: json["first_name"],
     lastName: json["last_name"],
-    avatar: json["avatar"],
+    avatar: json["avatar"] ?? "https://cdn.pixabay.com/photo/2015/06/19/21/24/avenue-815297_640.jpg",
   );
 
   Map<String, dynamic> toJson() => {
