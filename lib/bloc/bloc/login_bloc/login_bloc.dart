@@ -28,7 +28,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     on<LoginButtonPressed>((event, emit) async{
       emit(LoginLoadingState());
       try {
-        final user = await UserApi.getUser(event.email, event.password);
+        final user = await UserApi.getUser(event.email);
         emit(LoginSuccessState(user));
 
       } catch (error) {
